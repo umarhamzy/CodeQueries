@@ -6,8 +6,6 @@ import {
   MenubarContent,
   MenubarItem,
   MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
   MenubarTrigger,
 } from '@/components/ui/menubar';
 import { Image } from 'next/dist/client/image-component';
@@ -68,7 +66,6 @@ const Theme = () => {
               >
                 {item.label}
               </p>
-              <MenubarSeparator />
             </MenubarItem>
           ))}
         </MenubarContent>
