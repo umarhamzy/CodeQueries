@@ -17,7 +17,7 @@ const NavContent = () => {
   const pathname = usePathname();
 
   return (
-    <section className="flex h-full flex-col gap-6 pt-16">
+    <section className="flex flex-col gap-6 pt-16">
       {sidebarLinks.map((item) => {
         const isActive =
           (pathname.includes(item.route) && pathname.length > 1) ||
@@ -88,7 +88,7 @@ const MobileNav = () => {
               <SheetClose asChild>
                 <Link href="/sign-in">
                   <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                    <span className="primary-text-gradient">Log In</span>
+                    <span className="primary-text-gradient">Sign In</span>
                   </Button>
                 </Link>
               </SheetClose>
