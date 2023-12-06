@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import Link from 'next/link';
-import Image from 'next/image';
-import { SignedOut } from '@clerk/nextjs';
-import { Button } from '@/components/ui/button';
-import { sidebarLinks } from '@/constants';
-import { usePathname } from 'next/navigation';
+} from "@/components/ui/sheet";
+import Link from "next/link";
+import Image from "next/image";
+import { SignedOut } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
+import { sidebarLinks } from "@/constants";
+import { usePathname } from "next/navigation";
 
 const NavContent = () => {
   const pathname = usePathname();
@@ -29,8 +29,8 @@ const NavContent = () => {
               href={item.route}
               className={`${
                 isActive
-                  ? 'primary-gradient rounded-lg text-light-900'
-                  : 'text-dark300_light900'
+                  ? "primary-gradient rounded-lg text-light-900"
+                  : "text-dark300_light900"
               } : flex items-end justify-start gap-4 bg-transparent p-4`}
             >
               <Image
@@ -38,9 +38,9 @@ const NavContent = () => {
                 width={20}
                 height={20}
                 alt={item.label}
-                className={`${isActive ? '' : 'invert-colors'}`}
+                className={`${isActive ? "" : "invert-colors"}`}
               />
-              <p className={`${isActive ? 'base-bold' : 'base-medium'}`}>
+              <p className={`${isActive ? "base-bold" : "base-medium"}`}>
                 {item.label}
               </p>
             </Link>
@@ -74,7 +74,7 @@ const MobileNav = () => {
             height={23}
             alt="Dev Overflow"
           />
-          <p className="h2-bold text-dark100_light900 font-spaceGrotesk font">
+          <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
             Dev&nbsp;<span className="text-primary-500">Overflow</span>
           </p>
         </Link>

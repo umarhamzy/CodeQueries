@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { SignedOut } from '@clerk/nextjs';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from '../ui/button';
-import { usePathname } from 'next/navigation';
-import { sidebarLinks } from '@/constants';
+import { SignedOut } from "@clerk/nextjs";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import { usePathname } from "next/navigation";
+import { sidebarLinks } from "@/constants";
 
 const SidebarContent = () => {
   const pathname = usePathname();
@@ -23,8 +23,8 @@ const SidebarContent = () => {
             key={item.route}
             className={`${
               isActive
-                ? 'primary-gradient rounded-lg text-light-900'
-                : 'text-dark300_light900'
+                ? "primary-gradient rounded-lg text-light-900"
+                : "text-dark300_light900"
             } : flex items-end justify-start gap-4 bg-transparent p-4`}
           >
             <Image
@@ -32,11 +32,11 @@ const SidebarContent = () => {
               width={20}
               height={20}
               alt={item.label}
-              className={`${isActive ? '' : 'invert-colors'}`}
+              className={`${isActive ? "" : "invert-colors"}`}
             />
             <p
               className={`${
-                isActive ? 'base-bold' : 'base-medium'
+                isActive ? "base-bold" : "base-medium"
               } max-lg:hidden`}
             >
               {item.label}
