@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { SignedIn, UserButton } from '@clerk/nextjs';
-import Theme from './Theme';
-import MobileNav from './MobileNav';
-import GlobalSearch from './search/GlobalSearch';
+import Link from "next/link";
+import Image from "next/image";
+import { SignedIn, UserButton } from "@clerk/nextjs";
+import Theme from "./Theme";
+import MobileNav from "./MobileNav";
+import GlobalSearch from "./search/GlobalSearch";
 
 const Navbar = () => {
   return (
@@ -33,10 +33,10 @@ const Navbar = () => {
             afterSignOutUrl="/"
             appearance={{
               elements: {
-                avatarBox: 'h-10 w-10',
+                avatarBox: "h-10 w-10",
               },
               variables: {
-                colorPrimary: '#ff7000',
+                colorPrimary: "#ff7000",
               },
             }}
           />

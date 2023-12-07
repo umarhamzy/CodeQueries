@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import { Input } from '@/components/ui/input';
+import Image from "next/image";
+import { Input } from "@/components/ui/input";
 
 const GlobalSearch = () => {
   return (
@@ -14,9 +14,9 @@ const GlobalSearch = () => {
         />
         <Input
           type="text"
-          placeholder="Search anything..."
+          placeholder="Search across DevOverflow"
           value=""
-          className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
+          className="paragraph-regular no-focus placeholder background-light800_darkgradient ml-2 border-none shadow-none outline-none"
         />
       </div>
     </div>
