@@ -64,12 +64,12 @@ const LeftSidebar = () => {
                 className="invert-colors lg:hidden"
               />
               <span className="primary-text-gradient max-lg:hidden">
-                Sign In
+                Log In
               </span>
             </Button>
           </Link>
           <Link href="/sign-up">
-            <Button className="light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+            <Button className="light-border-2 btn-tertiary text-dark400_light700 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
               <Image
                 src="/assets/icons/sign-up.svg"
                 alt="sign-up"

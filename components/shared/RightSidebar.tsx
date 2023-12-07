@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import RenderTag from "./RenderTag";
+import { ChevronRight } from "lucide-react";
 
 const hotQuestions = [
   {
@@ -66,7 +67,7 @@ const TopQuestions = () => {
             key={question._id}
             className="flex cursor-pointer items-center justify-between gap-7"
           >
-            <p className="body-medium text-dark500_light700">
+            <p className="body-medium text-dark400_light700">
               {question.title}
             </p>
             <Image
