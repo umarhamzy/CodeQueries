@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { toNamespacedPath } from "path/posix";
 
 interface Props {
   _id: number;

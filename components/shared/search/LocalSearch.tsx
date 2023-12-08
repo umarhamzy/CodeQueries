@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Input } from "../../../ui/input";
+import { Input } from "../../ui/input";
 
 interface CustomInputProps {
   route: string;
