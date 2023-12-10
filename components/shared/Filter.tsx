@@ -32,14 +32,14 @@ export default function Filter({
     <div className={`relative ${containerClasses}`}>
       <Select>
         <SelectTrigger
-          className={`${otherClasses} body-regular light-border background-light800_dark300 text-dark500_light700 border px-5 py-2.5`}
+          className={`${otherClasses} body-regular light-border background-light800_darkgradient text-dark500_light700 flex border px-5 py-2.5`}
         >
-          <Image
+          {/* <Image
             src="/assets/icons/list-filter.svg"
             alt="t"
             width={20}
             height={20}
-          />
+          /> */}
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent className="text-dark500_light700 small-regular border-none bg-light-900 dark:bg-dark-300">
