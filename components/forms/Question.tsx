@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { QuestionsSchema } from "@/lib/validations";
+import { Badge } from "../ui/badge";
+import Image from "next/image";
 
 const Question = () => {
   const editorRef = useRef(null);
@@ -37,12 +39,50 @@ const Question = () => {
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
+  const handleInputKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    field: any,
+  ) => {
+    if (e.key === "Enter" && field.name === "tags") {
+      e.preventDefault();
+
+      const tagInput = e.target as HTMLInputElement;
+      // trimming the whitespace
+      const tagValue = tagInput.value.trim();
+
+      if (tagValue !== "") {
+        if (tagValue.length > 15) {
+          return form.setError("tags", {
+            type: "required",
+            message: "Each tag must be between 1-15 characters.",
+          });
+        }
+
+        // checking for similar tags, submit otherwise
+        if (!field.value.includes(tagValue as never)) {
+          form.setValue("tags", [...field.value, tagValue]);
+          tagInput.value = "";
+          form.clearErrors("tags");
+        }
+      } else {
+        form.trigger();
+      }
+    }
+  };
+
+  const handleTagRemove = (tag: string, field: any) => {
+    const newTags = field.value.filter((t: string) => t !== tag);
+
+    form.setValue("tags", newTags);
+  };
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex w-full flex-col gap-10"
       >
+        {/* TITLE */}
         <FormField
           control={form.control}
           name="title"
@@ -59,14 +99,15 @@ const Question = () => {
                 />
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Be specific and imagine you&apos;re asking a question from
-                another person.
+                Be specific- Imagine you&apos;re asking a question from another
+                person.
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
 
+        {/* DESCRIPTION */}
         <FormField
           control={form.control}
           name="description"
@@ -123,6 +164,7 @@ const Question = () => {
           )}
         />
 
+        {/* TAGS */}
         <FormField
           control={form.control}
           name="tags"
@@ -132,16 +174,38 @@ const Question = () => {
                 Tags<span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl className="mt-3.5">
-                <Input
-                  className="paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 min-h-[56px] border"
-                  placeholder="eg: react, javascript"
-                  {...field}
-                />
+                <>
+                  <Input
+                    className="paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 min-h-[56px] border"
+                    placeholder="eg: react, javascript"
+                    onKeyDown={(e) => handleInputKeyDown(e, field)}
+                  />
+                  {field.value.length > 0 && (
+                    <div className="flex-start mt-2.5 gap-2.5">
+                      {field.value.map((tag: any) => (
+                        <Badge
+                          key={tag}
+                          className="subtle-medium background-light800_dark300 text-dark400_light700 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 uppercase"
+                          onClick={() => handleTagRemove(tag, field)}
+                        >
+                          {tag}
+                          <Image
+                            src="/assets/icons/close.svg"
+                            alt="close icon"
+                            width={12}
+                            height={12}
+                            className="cursor-pointer object-contain invert-0 dark:invert"
+                          />
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </>
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
                 Add upto 3 tags to help identify the topic of your question.
                 Press{" "}
-                <kbd className="background-light700_dark300 inline-flex rounded-md px-2 py-1">
+                <kbd className="background-light700_dark300 text-dark400_light700 inline-flex rounded-md px-2 py-[0.1rem]">
                   Enter ↲
                 </kbd>{" "}
                 to add a tag
