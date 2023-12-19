@@ -1,11 +1,11 @@
 import { Schema, models, model, Document } from "mongoose";
 
-// This is a model to store Question data such as title, content, tags, views, upvotes etc.
+// This is a model to store Question data such as title, description, tags, views, upvotes etc.
 
 // 1. Create interface
 export interface IQuestion extends Document {
   title: string;
-  content: string;
+  description: string;
   tags: Schema.Types.ObjectId[];
   views: number;
   upvotes: Schema.Types.ObjectId[];
@@ -18,7 +18,7 @@ export interface IQuestion extends Document {
 // 2. Create Schema
 const QuestionSchema = new Schema({
   title: { type: String, required: true },
-  content: { type: String, required: true },
+  description: { type: String, required: true },
   tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
   views: { type: Number, default: 0 },
   upvotes: [{ type: Schema.Types.ObjectId, ref: "User" }],

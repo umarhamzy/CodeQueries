@@ -20,12 +20,19 @@ import { QuestionsSchema } from "@/lib/validations";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestion } from "@/lib/actions/question.action";
+import { useRouter, usePathname } from "next/navigation";
 
 const type: any = "create";
 
-const Question = () => {
+interface Props {
+  mongoUserId: string;
+}
+
+const Question = ({ mongoUserId }: Props) => {
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionsSchema>>({
@@ -45,9 +52,15 @@ const Question = () => {
       // make an async call to your API -> create a question
       // contain all form data
 
-      await createQuestion({});
+      await createQuestion({
+        title: values.title,
+        description: values.description,
+        tags: values.tags,
+        author: JSON.parse(mongoUserId),
+      });
 
       // navigate to home page
+      router.push("/");
     } catch (error) {
       console.log(error);
     } finally {
@@ -142,7 +155,7 @@ const Question = () => {
                   }
                   initialValue=""
                   onBlur={field.onBlur}
-                  onEditorChange={(content) => field.onChange(content)}
+                  onEditorChange={(description) => field.onChange(description)}
                   init={{
                     height: 350,
                     menubar: false,
@@ -203,7 +216,7 @@ const Question = () => {
                       {field.value.map((tag: any) => (
                         <Badge
                           key={tag}
-                          className="subtle-medium background-light800_dark300 text-dark400_light700 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 uppercase"
+                          className="subtle-medium background-light800_dark300 text-dark400_light700 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 lowercase"
                           onClick={() => handleTagRemove(tag, field)}
                         >
                           {tag}
