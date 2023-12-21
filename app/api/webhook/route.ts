@@ -6,7 +6,6 @@ import { NextResponse, userAgent } from "next/server";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
-  // TODO: Add webhook secret to .env.local
 
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 

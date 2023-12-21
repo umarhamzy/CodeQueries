@@ -14,7 +14,7 @@ export async function getQuestions(params: GetQuestionsParams) {
     const questions = await Question.find({})
       .populate({ path: "tags", model: Tag })
       .populate({ path: "author", model: User })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 }); // to put the latest question asked on top in the homepage
 
     return { questions };
   } catch (error) {
