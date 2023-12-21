@@ -3,7 +3,7 @@ import { Schema } from "mongoose";
 import { IUser } from "@/mongodb";
 
 export interface CreateAnswerParams {
-  content: string;
+  description: string;
   author: string; // User ID
   question: string; // Question ID
   path: string;
@@ -86,7 +86,7 @@ export interface DeleteQuestionParams {
 export interface EditQuestionParams {
   questionId: string;
   title: string;
-  content: string;
+  description: string;
   path: string;
 }
 
