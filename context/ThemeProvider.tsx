@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setMode("dark");
       document.documentElement.classList.add("dark");
     } else {
-      // setMode('light');
+      setMode("light");
       document.documentElement.classList.remove("dark");
     }
   };
@@ -29,8 +29,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     handleThemeChange();
   }, [mode]);
-
-  console.log("mode", mode);
 
   return (
     <ThemeContext.Provider value={{ mode, setMode }}>
