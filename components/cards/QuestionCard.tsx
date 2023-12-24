@@ -13,6 +13,7 @@ interface QuestionProps {
   }[];
   author: {
     _id: string;
+    username: string;
     name: string;
     picture: string;
   };
@@ -58,11 +59,11 @@ const QuestionCard = ({
         <Metric
           imgUrl="/assets/icons/avatar.svg"
           alt="user"
-          value={author.name}
+          value={author.username}
           title={` - asked ${getTimestamp(createdAt)}`}
           href={`/profile/${author._id}`}
           isAuthor
-          textStyles="body-medium text-dark400_light700"
+          textStyles="small-medium text-dark400_light700"
         />
         <Metric
           imgUrl="/assets/icons/like.svg"
