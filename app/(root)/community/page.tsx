@@ -13,7 +13,6 @@ const page = () => {
           imgSrc="/assets/icons/search.svg"
           route="/"
           placeholder="Search by username.."
-          otherClasses="max-w-[56rem] w-full"
         />
         <Filter
           filters={UserFilters}
