@@ -25,7 +25,7 @@ const SidebarContent = () => {
               isActive
                 ? "primary-gradient rounded-lg text-light-900"
                 : "text-dark300_light900"
-            } : flex items-end justify-start gap-4 bg-transparent p-4`}
+            } : flex items-center gap-4 bg-transparent p-4`}
           >
             <Image
               src={item.imgURL}
