@@ -3,7 +3,7 @@
 import { HomePageFilters } from "@/constants/filters";
 import { Button } from "../ui/button";
 
-const HomeFilters = () => {
+const HomeFilter = () => {
   const active = "";
 
   return (
@@ -25,4 +25,4 @@ const HomeFilters = () => {
   );
 };
 
-export default HomeFilters;
+export default HomeFilter;

@@ -1,4 +1,4 @@
-import HomeFilters from "@/components/home/HomeFilters";
+import HomeFilter from "@/components/home/HomeFilters";
 import QuestionCard from "@/components/cards/QuestionCard";
 import Filter from "@/components/shared/Filter";
 import LocalSearch from "@/components/shared/search/LocalSearch";
@@ -40,7 +40,7 @@ export default async function Home() {
           placeholder="Filter Questions"
         />
       </div>
-      <HomeFilters />
+      <HomeFilter />
       <div className="mt-10 flex w-full flex-col gap-6">
         {result.questions.length > 0 ? (
           result.questions.map((question) => (

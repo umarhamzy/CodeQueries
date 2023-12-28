@@ -1,5 +1,4 @@
 import UserCard from "@/components/cards/UserCard";
-import CommunityFilters from "@/components/community/CommunityFilters";
 import Filter from "@/components/shared/Filter";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import { UserFilters } from "@/constants/filters";
@@ -23,10 +22,8 @@ const page = async () => {
           filters={UserFilters}
           placeholder="Filter Users"
           otherClasses="min-h-[56px] sm:min-w-[170px]"
-          containerClasses="hidden max-sm:flex"
         />
       </div>
-      <CommunityFilters />
 
       <section className="mt-12 flex flex-wrap gap-4">
         {result.users.length > 0 ? (
