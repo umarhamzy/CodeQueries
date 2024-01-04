@@ -29,7 +29,7 @@ export default function Filter({
     <div className={`relative ${containerClasses}`}>
       <Select>
         <SelectTrigger
-          className={`${otherClasses} body-regular light-border background-light800_darkgradient text-dark500_light700 flex border px-5 py-2.5`}
+          className={`${otherClasses} body-regular light-border background-light800_darkgradient text-dark500_light700 flex border bg-slate-100 px-5 py-2.5 focus:outline-none`}
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

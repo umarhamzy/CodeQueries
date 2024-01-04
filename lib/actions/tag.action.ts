@@ -3,7 +3,6 @@
 import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose";
 import { GetAllTagsParams, GetTopInteractedTagsParams } from "./shared.types";
-import { Tags } from "lucide-react";
 import Tag from "@/database/tag.model";
 
 export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
@@ -31,12 +30,12 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
 }
 
 export async function getAllTags(params: GetAllTagsParams) {
-  connectToDatabase();
-
-  // const { page = 1, pageSize = 20, filter, searchQuery } = params;
-
   try {
-    const tags = await Tag.find({}).sort({ createdAt: -1 });
+    connectToDatabase();
+
+    // const { page = 1, pageSize = 20, filter, searchQuery } = params;
+
+    const tags = await Tag.find({});
 
     return { tags };
   } catch (error) {

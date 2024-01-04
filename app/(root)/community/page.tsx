@@ -37,7 +37,7 @@ const page = async () => {
               href={"/sign-up"}
               className="primary-gradient mt-10 block rounded-lg p-4 font-bold text-light-800"
             >
-              Click here to create an account <br /> Be our first user! 🎉
+              Click to be our first user! 🎉
             </Link>
           </div>
         )}

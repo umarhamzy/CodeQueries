@@ -1,30 +1,33 @@
 import Link from "next/link";
-import RenderTag from "../shared/RenderTag";
-import { Badge } from "../ui/badge";
-import { getAllTags } from "@/lib/actions/tag.action";
 
 interface Props {
   tag: {
     _id: string;
     name: string;
     description: string;
+    questions: [];
   };
 }
 
-const TagCard = async ({ tag }: Props) => {
+const TagCard = ({ tag }: Props) => {
   return (
     <Link
       href={`/tags/${tag._id}`}
-      className="shadow-light100_darknone max-sx:min-w-full w-full xs:w-[260px]"
+      className="shadow-light100_darknone max-sx:min-w-full mx-auto w-full xs:w-80"
     >
-      <article className="background-light900_dark200 light-border flex w-full flex-col items-center gap-4 rounded-2xl border p-8">
-        <div className=" text-center">
-          <RenderTag _id={tag._id} name={tag.name} key={tag._id} showCount />
-          <p className="text-dark200_light900 h3-bold line-clamp-1">
-            {tag.description}
-          </p>
-          <p className="text-dark500_light500"></p>
+      <article className="background-light900_dark200 light-border flex w-full flex-col gap-4 rounded-2xl border px-8 py-10">
+        <div className="background-light800_dark400 w-fit rounded-sm px-5 py-1.5 lowercase">
+          <p className="paragraph-semibold text-dark300_light900">{tag.name}</p>
         </div>
+        <p>{tag.description}</p>
+        <p className="small-medium text-dark400_light500 mt-3.5 flex items-center gap-3">
+          <span className="body-semibold primary-text-gradient">
+            {tag.questions.length}
+          </span>
+          <div>
+            {tag.questions.length > 0 ? <p>questions</p> : <p>question</p>}
+          </div>
+        </p>
       </article>
     </Link>
   );
