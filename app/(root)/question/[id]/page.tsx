@@ -1,14 +1,16 @@
+import Answer from "@/components/forms/Answer";
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHTML";
+import RenderTag from "@/components/shared/RenderTag";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { formatBigNumber, getTimestamp } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-const page = async ({ params }) => {
+const page = async ({ params }: { params: { id: string } }) => {
   const result = await getQuestionById({ questionId: params.id });
 
-  console.log(result._id);
+  // console.log(result.tags);
 
   return (
     <>
@@ -59,7 +61,20 @@ const page = async ({ params }) => {
         />
       </div>
 
-      <ParseHTML data={result.content} />
+      <ParseHTML data={result.description} />
+
+      <div className="mt-8 flex flex-wrap gap-2">
+        {result.tags.map((tag: any) => (
+          <RenderTag
+            key={tag._id}
+            _id={tag._id}
+            name={tag.name}
+            showCount={false}
+          />
+        ))}
+      </div>
+
+      <Answer />
     </>
   );
 };
