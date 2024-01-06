@@ -32,7 +32,7 @@ const UserSchema = new Schema({
   joinedAt: { type: Date, default: Date.now },
 });
 
-// 3. Create model
+// 3. Create and export model
 const User = models.User || model("User", UserSchema);
 
 export default User;
