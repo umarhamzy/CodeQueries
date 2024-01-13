@@ -53,7 +53,7 @@ export async function createQuestion(params: CreateQuestionParams) {
 
     const { title, description, tags, author, path } = params;
 
-    // Create a question
+    // Create a question document
     const question = await Question.create({
       title,
       description,

@@ -16,7 +16,7 @@ interface Props {
   }[];
   otherClasses?: string;
   containerClasses?: string;
-  placeholder: string;
+  placeholder?: string;
 }
 
 export default function Filter({
@@ -31,7 +31,13 @@ export default function Filter({
         <SelectTrigger
           className={`${otherClasses} body-regular light-border background-light800_darkgradient text-dark500_light700 flex border bg-slate-100 px-5 py-2.5 focus:outline-none`}
         >
-          <SelectValue placeholder={placeholder} />
+          <SelectValue
+            placeholder={`${
+              placeholder !== undefined || null
+                ? `${placeholder}`
+                : "Select a Filter"
+            }`}
+          />
         </SelectTrigger>
         <SelectContent className="text-dark500_light700 small-regular border-none bg-light-900 dark:bg-dark-300">
           <SelectGroup>
