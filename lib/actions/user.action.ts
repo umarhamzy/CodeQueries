@@ -7,6 +7,7 @@ import {
   CreateUserParams,
   DeleteUserParams,
   GetAllUsersParams,
+  ToggleSaveQuestionParams,
   UpdateUserParams,
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
@@ -111,3 +112,40 @@ export async function getAllUsers(params: GetAllUsersParams) {
 //     throw error;
 //   }
 // }
+
+export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
+  try {
+    connectToDatabase();
+
+    const { userId, questionId, path } = params;
+
+    const user = await User.findById(userId);
+
+    if (!userId) throw new Error("No user found!");
+
+    const isQuestionSaved = user.saved.includes(questionId);
+
+    if (isQuestionSaved) {
+      // remove question from saved array
+      await User.findById(
+        userId,
+        {
+          $pull: { saved: questionId },
+        },
+        { new: true },
+      );
+    } else {
+      // add question to saved array
+      await User.findById(
+        userId,
+        { $addToSet: { saved: questionId } },
+        { new: true },
+      );
+    }
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

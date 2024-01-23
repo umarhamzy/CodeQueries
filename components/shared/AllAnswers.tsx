@@ -1,4 +1,3 @@
-import React from "react";
 import Filter from "./Filter";
 import { AnswerFilters } from "@/constants/filters";
 import { getAnswers } from "@/lib/actions/answer.action";
@@ -24,6 +23,7 @@ const AllAnswers = async ({
   filter,
 }: Props) => {
   const result = await getAnswers({ questionId });
+
   return (
     <div className="mt-11">
       <div className="flex items-center justify-between">
@@ -69,7 +69,15 @@ const AllAnswers = async ({
                   </div>
                 </Link>
                 <div className="flex justify-end">
-                  <Votes />
+                  <Votes
+                    type="answer"
+                    itemId={JSON.stringify(answer._id)}
+                    userId={JSON.stringify(userId)}
+                    upvotes={answer.upvotes.length}
+                    hasUpvoted={answer.upvotes.includes(userId)}
+                    downvotes={answer.downvotes.length}
+                    hasDownvoted={answer.downvotes.includes(userId)}
+                  />
                 </div>
               </div>
             </div>
