@@ -127,7 +127,7 @@ export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
 
     if (isQuestionSaved) {
       // remove question from saved array
-      await User.findById(
+      await User.findByIdAndUpdate(
         userId,
         {
           $pull: { saved: questionId },
@@ -136,7 +136,7 @@ export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
       );
     } else {
       // add question to saved array
-      await User.findById(
+      await User.findByIdAndUpdate(
         userId,
         { $addToSet: { saved: questionId } },
         { new: true },

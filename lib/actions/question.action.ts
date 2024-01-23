@@ -4,16 +4,13 @@ import Tag from "@/database/tag.model";
 import { connectToDatabase } from "../mongoose";
 import Question from "@/database/question.model";
 import {
-  AnswerVoteParams,
   CreateQuestionParams,
   GetQuestionByIdParams,
   GetQuestionsParams,
   QuestionVoteParams,
-  ToggleSaveQuestionParams,
 } from "./shared.types";
 import User from "@/database/user.model";
 import { revalidatePath } from "next/cache";
-import Answer from "@/database/answer.model";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
