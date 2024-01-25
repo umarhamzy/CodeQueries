@@ -1,4 +1,3 @@
-import Image from "next/image";
 import RenderTag from "../shared/RenderTag";
 import Link from "next/link";
 import Metric from "../shared/Metric";
@@ -17,7 +16,7 @@ interface QuestionProps {
     name: string;
     picture: string;
   };
-  upvotes: number;
+  upvotes: string[];
   views: number;
   answers: Array<object>;
   createdAt: Date;
@@ -47,7 +46,7 @@ const QuestionCard = ({
             </h3>
           </Link>
         </div>
-        {/* If signed in- add edit delete actions */}
+        {/* TODO If signed in- add edit delete actions */}
       </div>
       <div className="mt-3.5 flex flex-wrap gap-2">
         {tags.map((tag) => (
@@ -68,22 +67,22 @@ const QuestionCard = ({
         <Metric
           imgUrl="/assets/icons/like.svg"
           alt="upvotes"
-          value={formatBigNumber(upvotes)}
-          title=" Votes"
+          value={formatBigNumber(upvotes.length)}
+          title=" votes"
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="message"
           value={formatBigNumber(answers.length)}
-          title=" Answers"
+          title=" answers"
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
           alt="eye"
           value={formatBigNumber(views)}
-          title=" Views"
+          title=" views"
           textStyles="small-medium text-dark400_light800"
         />
       </div>
