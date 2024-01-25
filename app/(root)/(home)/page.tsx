@@ -30,7 +30,7 @@ export default async function Home() {
           route="/"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
-          placeholder="Need help finding something?"
+          placeholder="Search all questions.."
           otherClasses="flex-1"
         />
         <Filter

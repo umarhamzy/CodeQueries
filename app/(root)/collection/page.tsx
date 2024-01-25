@@ -19,14 +19,14 @@ export default async function Home() {
 
   return (
     <>
-      <h1 className="h1-bold text-dark100_light900">Starred</h1>
+      <h1 className="h1-bold text-dark100_light900">Starred Questions</h1>
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
         <LocalSearch
           route="/"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
-          placeholder="Need help finding something?"
+          placeholder="Search starred questions.."
           otherClasses="flex-1"
         />
         <Filter
@@ -37,7 +37,7 @@ export default async function Home() {
       </div>
       <div className="mt-10 flex w-full flex-col gap-6">
         {result.questions.length > 0 ? (
-          result.questions.map((question) => (
+          result.questions.map((question: any) => (
             <QuestionCard
               key={question._id}
               _id={question._id}
@@ -53,11 +53,9 @@ export default async function Home() {
         ) : (
           <NoResult
             title="Star questions to see them here!"
-            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the
-            discussion. Our query could be the next big thing others learn from. Get
-            involved! 💡"
-            link="/ask-question"
-            linkTitle="Ask a Question"
+            description="Click on the star icon to star a question. 🌟"
+            link="/"
+            linkTitle="Take me to Questions page"
           />
         )}
       </div>
