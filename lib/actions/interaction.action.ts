@@ -14,6 +14,7 @@ export async function viewQuestion(params: ViewQuestionParams) {
     // Update view count for the question
 
     await Question.findByIdAndUpdate(questionId, {
+      // increment
       $inc: {
         views: 1,
       },

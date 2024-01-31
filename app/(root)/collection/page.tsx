@@ -55,7 +55,7 @@ export default async function Home() {
             title="Star questions to see them here!"
             description="Click on the star icon to star a question. 🌟"
             link="/"
-            linkTitle="Ask a Question"
+            linkTitle="Browse Questions"
           />
         )}
       </div>

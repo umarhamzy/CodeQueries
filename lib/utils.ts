@@ -43,11 +43,42 @@ export const getTimestamp = (createdAt: Date): string => {
 };
 
 export const formatBigNumber = (num: number): string => {
-  if (num >= 1000000) {
-    return (num / 1000000).toFixed(1) + "M";
+  if (num === undefined) {
+    return "-";
+  } else if (num >= 1000000) {
+    const formattedNum = (num / 1000000).toFixed(1);
+    return `${formattedNum}M`;
   } else if (num >= 1000) {
-    return (num / 1000).toFixed(1) + "K";
+    const formattedNum = (num / 1000).toFixed(1);
+    return `${formattedNum}K`;
   } else {
     return num.toString();
   }
+};
+
+export const getMonthAndYear = (date: Date): string => {
+  // Check if date is a valid Date object
+  if (!(date instanceof Date) || isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  return `${month} ${year}`;
 };

@@ -68,21 +68,21 @@ const QuestionCard = ({
           imgUrl="/assets/icons/like.svg"
           alt="upvotes"
           value={formatBigNumber(upvotes.length)}
-          title=" votes"
+          title={`${upvotes.length === 1 ? " upvote" : " upvotes"}`}
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="message"
           value={formatBigNumber(answers.length)}
-          title=" answers"
+          title={`${answers.length === 1 ? " answer" : " answers"}`}
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
           alt="eye"
           value={formatBigNumber(views)}
-          title=" views"
+          title={`${views > 1 ? " views" : " view"}`}
           textStyles="small-medium text-dark400_light800"
         />
       </div>
