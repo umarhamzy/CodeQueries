@@ -15,7 +15,6 @@ const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
   const userInfo = await getUserInfo({ userId: params.id });
 
-  // console.log(userInfo);
   return (
     <>
       <div className="flex flex-col-reverse items-start justify-between sm:flex-row">
@@ -77,23 +76,29 @@ const Page = async ({ params, searchParams }: URLProps) => {
         totalAnswers={userInfo.totalAnswers}
       />
       <div className="mt-10 flex gap-10">
-        <Tabs>
-          <Tabs defaultValue="top-posts" className="flex-1">
-            <TabsList className="background-light800_dark400 min-h-[42px] p-1">
-              <TabsTrigger value="top-posts" className="tab">
-                Top Posts
-              </TabsTrigger>
-              <TabsTrigger value="answers" className="tab">
-                Answers
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="top-posts">
-              <QuestionTab />
-            </TabsContent>
-            <TabsContent value="answers">
-              <AnswersTab />
-            </TabsContent>
-          </Tabs>
+        <Tabs defaultValue="top-posts" className="flex-1">
+          <TabsList className="background-light800_dark400 mb-5 min-h-[42px] p-1">
+            <TabsTrigger value="top-posts" className="tab">
+              Top Posts
+            </TabsTrigger>
+            <TabsTrigger value="answers" className="tab">
+              Answers
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="top-posts" className="flex flex-col gap-6">
+            <QuestionTab
+              searchParams={searchParams}
+              userId={userInfo.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
+          <TabsContent value="answers" className="flex flex-col gap-6">
+            <AnswersTab
+              searchParams={searchParams}
+              userId={userInfo.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
         </Tabs>
       </div>
     </>
