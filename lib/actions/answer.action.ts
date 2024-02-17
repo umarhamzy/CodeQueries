@@ -5,6 +5,7 @@ import { connectToDatabase } from "../mongoose";
 import {
   AnswerVoteParams,
   CreateAnswerParams,
+  DeleteAnswerParams,
   GetAnswersParams,
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
@@ -123,5 +124,24 @@ export async function downvoteAnswer(params: AnswerVoteParams) {
   } catch (error) {
     console.log(error);
     throw error;
+  }
+}
+
+export async function deleteAnswer(params: DeleteAnswerParams) {
+  try {
+    connectToDatabase();
+    const { answerId, path } = params;
+
+    const answer = await Answer.findById(answerId);
+
+    await Answer.deleteOne({ _id: answerId });
+    await Question.updateMany(
+      { answers: answerId },
+      { pull: { answers: answerId } },
+    );
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
   }
 }
