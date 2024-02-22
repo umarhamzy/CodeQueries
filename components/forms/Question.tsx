@@ -22,9 +22,6 @@ import Image from "next/image";
 import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
-import clsx from "clsx";
-
-const type: any = "create";
 
 interface Props {
   mongoUserId: string;
@@ -39,15 +36,20 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const parsedQuestionDetails = JSON.parse(questionDetails || "");
-  const groupedTags = parsedQuestionDetails.tags.map((tag) => tag.name);
+  console.log(questionDetails);
+  const parsedQuestionDetails =
+    questionDetails && JSON.parse(questionDetails || "");
+
+  const groupedTags = parsedQuestionDetails?.tags.map(
+    (tag: { name: string }) => tag.name,
+  );
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionsSchema>>({
     resolver: zodResolver(QuestionsSchema),
     defaultValues: {
-      title: parsedQuestionDetails.title || "",
-      description: parsedQuestionDetails.description || "",
+      title: parsedQuestionDetails?.title || "",
+      description: parsedQuestionDetails?.description || "",
       tags: groupedTags || [],
     },
   });
@@ -175,7 +177,7 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
                     // @ts-ignore
                     (editorRef.current = editor)
                   }
-                  initialValue={parsedQuestionDetails.description || ""}
+                  initialValue={parsedQuestionDetails?.description || ""}
                   onBlur={field.onBlur}
                   onEditorChange={(description) => field.onChange(description)}
                   init={{
