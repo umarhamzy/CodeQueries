@@ -1,5 +1,4 @@
-import Question from "@/components/forms/Question";
-import { getQuestionById } from "@/lib/actions/question.action";
+import Profile from "@/components/forms/Profile";
 import { getUserById } from "@/lib/actions/user.action";
 import { ParamsProps } from "@/types";
 import { auth } from "@clerk/nextjs";
@@ -11,17 +10,15 @@ const page = async ({ params }: ParamsProps) => {
   if (!userId) redirect("/sign-in");
 
   const mongoUser = await getUserById({ userId });
-  const result = await getQuestionById({ questionId: params.id });
+
+  //   console.log(mongoUser);
+  //   console.log(JSON.stringify(mongoUser));
 
   return (
     <div>
-      <h1 className="h1-bold text-dark100_light900">Edit Question</h1>
+      <h1 className="h1-bold text-dark100_light900">Edit Profile</h1>
       <div className="mt-9">
-        <Question
-          mongoUserId={JSON.stringify(mongoUser._id)}
-          type="edit"
-          questionDetails={JSON.stringify(result)}
-        />
+        <Profile clerkId={userId} user={JSON.stringify(mongoUser)} />
       </div>
     </div>
   );

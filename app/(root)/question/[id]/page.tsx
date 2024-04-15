@@ -15,13 +15,15 @@ const page = async ({ params }: { params: { id: string } }) => {
   const result = await getQuestionById({ questionId: params.id });
   const { userId: clerkId } = auth();
 
-  let mongoUser;
+  // !Fix for viewing specific questions in Home page, remove declaration and leave initialization if errors found.
+  let mongoUser = { _id: "", saved: [] };
 
   if (clerkId) {
     mongoUser = await getUserById({ userId: clerkId });
   }
 
   // console.log(result.upvotes.length);
+  // console.log(mongoUser);
 
   return (
     <>
