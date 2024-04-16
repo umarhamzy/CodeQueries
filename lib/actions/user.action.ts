@@ -278,16 +278,3 @@ export async function getHotQuestions() {
     throw error;
   }
 }
-
-export async function getPopularTags() {
-  try {
-    connectToDatabase();
-
-    const popularTags = await Tag.find({}).sort({ questions: -1 }).limit(5);
-
-    return popularTags;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-}

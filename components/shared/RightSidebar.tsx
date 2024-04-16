@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import RenderTag from "./RenderTag";
-import { getHotQuestions, getPopularTags } from "@/lib/actions/user.action";
+import { getHotQuestions } from "@/lib/actions/user.action";
+import { getPopularTags } from "@/lib/actions/tag.action";
 
 const RightSidebar = async () => {
   const hotQuestions = await getHotQuestions();
@@ -40,7 +41,7 @@ const RightSidebar = async () => {
                 key={tag._id}
                 _id={tag._id}
                 name={tag.name}
-                totalQuestions={tag.questions.length}
+                totalQuestions={tag.numberOfQuestions}
                 showCount
               />
             ))}

@@ -10,6 +10,7 @@ import ProfileLink from "@/components/shared/ProfileLink";
 import Stats from "@/components/shared/Stats";
 import QuestionTab from "@/components/shared/QuestionsTab";
 import AnswersTab from "@/components/shared/AnswersTab";
+import { userInfo } from "os";
 
 const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
@@ -24,7 +25,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
             alt={userInfo.user.name + "'s profile picture"}
             width={140}
             height={140}
-            className="aspect-square max-h-[100px] rounded-full object-cover"
+            className="aspect-square rounded-full object-cover"
           />
           <div className="mt-3">
             <h2 className="h2-bold text-dark100_light900">
