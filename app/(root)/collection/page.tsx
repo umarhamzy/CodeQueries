@@ -21,17 +21,16 @@ export default async function Home() {
     <>
       <h1 className="h1-bold text-dark100_light900">Starred Questions</h1>
 
-      <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+      <div className="mt-11 flex flex-wrap justify-between gap-5 sm:items-center">
         <LocalSearch
           route="/"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search starred questions.."
-          otherClasses="flex-1"
         />
         <Filter
           filters={QuestionFilters}
-          otherClasses="min-h-[56px] sm:min-w-[170px]"
+          otherClasses="min-h-[56px] max-md:min-w-[170px]"
           placeholder="Filter Questions"
         />
       </div>

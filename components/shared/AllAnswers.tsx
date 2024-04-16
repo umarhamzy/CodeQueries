@@ -37,10 +37,7 @@ const AllAnswers = async ({
               }`}
         </h3>
 
-        <Filter
-          filters={AnswerFilters}
-          otherClasses="min-h-[56px] min-w-[170px]"
-        />
+        <Filter filters={AnswerFilters} otherClasses="min-w-[150px]" />
       </div>
 
       <div>

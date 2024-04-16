@@ -11,7 +11,7 @@ const page = async () => {
   return (
     <div>
       <h1 className="h1-bold text-dark100_light900">All Users</h1>
-      <div className="mt-9 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+      <div className="mt-11 flex flex-wrap justify-between gap-5 sm:items-center">
         <LocalSearch
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
@@ -21,11 +21,11 @@ const page = async () => {
         <Filter
           filters={UserFilters}
           placeholder="Filter Users"
-          otherClasses="min-h-[56px] sm:min-w-[170px]"
+          otherClasses="min-h-[56px] max-md:min-w-[170px]"
         />
       </div>
 
-      <section className="mt-12 flex flex-wrap gap-4">
+      <section className="mt-12 flex flex-wrap justify-center gap-4">
         {result.users.length > 0 ? (
           result.users.map((user) => <UserCard key={user._id} user={user} />)
         ) : (

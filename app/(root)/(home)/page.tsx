@@ -25,13 +25,12 @@ export default async function Home() {
         </Link>
       </div>
 
-      <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+      <div className="mt-11 flex flex-wrap justify-between gap-5 sm:items-center">
         <LocalSearch
           route="/"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search all questions.."
-          otherClasses="flex-1"
         />
         <Filter
           filters={HomePageFilters}
