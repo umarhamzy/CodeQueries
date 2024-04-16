@@ -110,15 +110,6 @@ export async function getAllUsers(params: GetAllUsersParams) {
   }
 }
 
-// export async function getAllUsers(params: GetAllUsersParams) {
-//   try {
-//     connectToDatabase();
-//   } catch (error) {
-//     console.log(error);
-//     throw error;
-//   }
-// }
-
 export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
   try {
     connectToDatabase();
@@ -258,6 +249,43 @@ export async function getUserAnswers(params: GetUserStatsParams) {
       .skip((page - 1) * pageSize);
 
     return { answers: userAnswers, totalAnswers };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// export async function getAllUsers(params: GetAllUsersParams) {
+//   try {
+//     connectToDatabase();
+//   } catch (error) {
+//     console.log(error);
+//     throw error;
+//   }
+// }
+
+export async function getHotQuestions() {
+  try {
+    connectToDatabase();
+
+    const hotQuestions = await Question.find({})
+      .sort({ views: -1, upvotes: -1 })
+      .limit(5);
+
+    return hotQuestions;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getPopularTags() {
+  try {
+    connectToDatabase();
+
+    const popularTags = await Tag.find({}).sort({ questions: -1 }).limit(5);
+
+    return popularTags;
   } catch (error) {
     console.log(error);
     throw error;

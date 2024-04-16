@@ -33,9 +33,7 @@ export default function Filter({
         >
           <SelectValue
             placeholder={`${
-              placeholder !== undefined || null
-                ? `${placeholder}`
-                : "Select a Filter"
+              placeholder !== undefined || null ? `${placeholder}` : "Filter By"
             }`}
           />
         </SelectTrigger>

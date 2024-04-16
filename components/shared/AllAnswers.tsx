@@ -26,7 +26,7 @@ const AllAnswers = async ({
 
   return (
     <div className="mt-11">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between max-md:space-y-2">
         <h3 className="primary-text-gradient">
           {totalAnswers === 0
             ? ""
@@ -37,7 +37,10 @@ const AllAnswers = async ({
               }`}
         </h3>
 
-        <Filter filters={AnswerFilters} />
+        <Filter
+          filters={AnswerFilters}
+          otherClasses="min-h-[56px] min-w-[170px]"
+        />
       </div>
 
       <div>
@@ -48,7 +51,7 @@ const AllAnswers = async ({
             className="light-border scroll-smooth border-b py-10"
           >
             <div className="flex items-center justify-between">
-              <div className="mb-8 flex flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
+              <div className="mb-8 flex w-full justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
                 <Link
                   href={`/profile/${answer.author.clerkId}`}
                   className="flex flex-1 items-start gap-1 sm:items-center"
@@ -71,17 +74,15 @@ const AllAnswers = async ({
                     </p>
                   </div>
                 </Link>
-                <div className="flex justify-end">
-                  <Votes
-                    type="answer"
-                    itemId={JSON.stringify(answer._id)}
-                    userId={JSON.stringify(userId)}
-                    upvotes={answer.upvotes.length}
-                    hasUpvoted={answer.upvotes.includes(userId)}
-                    downvotes={answer.downvotes.length}
-                    hasDownvoted={answer.downvotes.includes(userId)}
-                  />
-                </div>
+                <Votes
+                  type="answer"
+                  itemId={JSON.stringify(answer._id)}
+                  userId={JSON.stringify(userId)}
+                  upvotes={answer.upvotes.length}
+                  hasUpvoted={answer.upvotes.includes(userId)}
+                  downvotes={answer.downvotes.length}
+                  hasDownvoted={answer.downvotes.includes(userId)}
+                />
               </div>
             </div>
             <ParseHTML data={answer.content} />

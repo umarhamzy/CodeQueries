@@ -40,7 +40,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               height={22}
               alt="profile"
             />
-            <p className="paragrap-sembold text-dark300_light700">
+            <p className="paragraph-semibold text-dark300_light700">
               {result.author.name}
             </p>
           </Link>
