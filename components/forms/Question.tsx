@@ -36,7 +36,7 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  console.log(questionDetails);
+  // console.log(questionDetails);
   const parsedQuestionDetails =
     questionDetails && JSON.parse(questionDetails || "");
 

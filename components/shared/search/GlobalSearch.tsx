@@ -14,8 +14,8 @@ const GlobalSearch = () => {
         />
         <Input
           type="text"
-          placeholder="Search across Dev Overflow.."
-          className="paragraph-regular no-focus placeholder background-light800_darkgradient ml-2 border-none shadow-none outline-none"
+          placeholder="Search"
+          className="paragraph-regular no-focus placeholder text-dark400_light700 flex h-9 w-full rounded-md border-none border-slate-200 bg-transparent px-3 py-1 text-sm shadow-none"
         />
       </div>
     </div>
