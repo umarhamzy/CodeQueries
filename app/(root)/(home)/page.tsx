@@ -7,11 +7,14 @@ import { HomePageFilters } from "@/constants/filters";
 import Link from "next/link";
 import NoResult from "@/components/shared/NoResult";
 import { getQuestions } from "@/lib/actions/question.action";
+import { SearchParamsProps } from "@/types";
 
-export default async function Home() {
-  const result = await getQuestions({});
-
+export default async function Home({ searchParams }: SearchParamsProps) {
+  const result = await getQuestions({
+    searchQuery: searchParams.q,
+  });
   // console.log(result.questions);
+  // console.log(searchParams);
 
   return (
     <>
@@ -34,7 +37,7 @@ export default async function Home() {
         />
         <Filter
           filters={HomePageFilters}
-          otherClasses="min-h-[56px] max-md:min-w-[170px]"
+          otherClasses="min-h-[56px] min-w-[170px]"
           containerClasses="hidden max-md:flex"
           placeholder="Filter Questions"
         />

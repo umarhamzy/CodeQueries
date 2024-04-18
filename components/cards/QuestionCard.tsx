@@ -3,10 +3,9 @@ import Link from "next/link";
 import Metric from "../shared/Metric";
 import { formatBigNumber, getTimestamp } from "@/lib/utils";
 import { SignedIn } from "@clerk/nextjs";
-import { URLProps } from "@/types";
 import EditDeleteAction from "../shared/EditDeleteAction";
 
-interface QuestionProps extends URLProps {
+interface QuestionProps {
   _id: string;
   clerkId?: string;
   title: string;

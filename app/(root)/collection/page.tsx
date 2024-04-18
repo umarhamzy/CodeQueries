@@ -5,14 +5,16 @@ import { QuestionFilters } from "@/constants/filters";
 import NoResult from "@/components/shared/NoResult";
 import { getSavedQuestions } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
+import { SearchParamsProps } from "@/types";
 
-export default async function Home() {
+const page = async ({ searchParams }: SearchParamsProps) => {
   const { userId } = auth();
 
   if (!userId) return null;
 
   const result = await getSavedQuestions({
     clerkId: userId,
+    searchQuery: searchParams.q,
   });
 
   // console.log(result.questions);
@@ -23,14 +25,14 @@ export default async function Home() {
 
       <div className="mt-11 flex flex-wrap justify-between gap-5 sm:items-center">
         <LocalSearch
-          route="/"
+          route="/collection"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search starred questions.."
         />
         <Filter
           filters={QuestionFilters}
-          otherClasses="min-h-[56px] max-md:min-w-[170px]"
+          otherClasses="min-h-[56px] min-w-[170px]"
           placeholder="Filter Questions"
         />
       </div>
@@ -60,4 +62,6 @@ export default async function Home() {
       </div>
     </>
   );
-}
+};
+
+export default page;

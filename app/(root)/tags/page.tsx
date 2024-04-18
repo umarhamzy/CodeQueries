@@ -4,9 +4,12 @@ import NoResult from "@/components/shared/NoResult";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import { TagFilters } from "@/constants/filters";
 import { getAllTags } from "@/lib/actions/tag.action";
+import { SearchParamsProps } from "@/types";
 
-const page = async () => {
-  const result = await getAllTags({});
+const page = async ({ searchParams }: SearchParamsProps) => {
+  const result = await getAllTags({
+    searchQuery: searchParams.q,
+  });
 
   // console.log(result.tags);
 
@@ -23,11 +26,11 @@ const page = async () => {
         <Filter
           filters={TagFilters}
           placeholder="Filter Tags"
-          otherClasses="min-h-[56px] max-md:min-w-[170px]"
+          otherClasses="min-h-[56px] min-w-[170px]"
         />
       </div>
 
-      <section className="col-span-2 mt-12 flex flex-wrap justify-center gap-4">
+      <section className="mt-12 flex w-full flex-wrap gap-4">
         {result.tags.length > 0 ? (
           result.tags.map((tag) => <TagCard key={tag._id} tag={tag} />)
         ) : (

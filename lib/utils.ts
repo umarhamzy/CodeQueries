@@ -86,13 +86,14 @@ export const getMonthAndYear = (date: Date): string => {
 };
 
 interface UrlQueryParams {
-  params: string;
+  queryString: string;
   key: string;
   value: string | null;
 }
 
-export const formUrlQuery = ({ params, key, value }: UrlQueryParams) => {
-  const currentUrl = qs.parse(params);
+export const formUrlQuery = ({ queryString, key, value }: UrlQueryParams) => {
+  const currentUrl = qs.parse(queryString); // currentUrl is an object
+  // console.log(currentUrl);
 
   currentUrl[key] = value;
 
@@ -108,15 +109,15 @@ export const formUrlQuery = ({ params, key, value }: UrlQueryParams) => {
 };
 
 interface RemoveUrlQueryParams {
-  params: string;
+  queryString: string;
   keysToRemove: string[];
 }
 
 export const removeKeysFromQuery = ({
-  params,
+  queryString,
   keysToRemove,
 }: RemoveUrlQueryParams) => {
-  const currentUrl = qs.parse(params);
+  const currentUrl = qs.parse(queryString);
 
   keysToRemove.forEach((key) => {
     delete currentUrl[key];
