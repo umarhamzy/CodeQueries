@@ -30,7 +30,7 @@ const page = async ({ searchParams }: SearchParamsProps) => {
         />
       </div>
 
-      <section className="mt-12 flex w-full flex-wrap gap-4">
+      <section className="mt-12 grid grid-cols-3 gap-4 max-sm:grid-cols-2">
         {result.tags.length > 0 ? (
           result.tags.map((tag) => <TagCard key={tag._id} tag={tag} />)
         ) : (

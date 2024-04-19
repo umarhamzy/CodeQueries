@@ -66,8 +66,8 @@ const MobileNav = () => {
         />
       </SheetTrigger>
       <SheetContent
-        side="left"
-        className="background-light900_dark200 border-none"
+        side="right"
+        className="background-light900_dark200 max-w-sm max-[325px]:min-w-full"
       >
         <Link href="/" className="flex items-center gap-1">
           <Image
@@ -82,9 +82,8 @@ const MobileNav = () => {
           </p>
         </Link>
         <div className="no-scrollbar flex h-[calc(100vh-80px)] flex-col justify-between overflow-y-auto">
-          <SheetClose asChild>
-            <NavContent />
-          </SheetClose>
+          <NavContent />
+          {/* Removed SheetClose here as it's included in NavContent sub-component */}
 
           <SignedOut>
             <div className="flex flex-col gap-3">

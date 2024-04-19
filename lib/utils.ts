@@ -22,25 +22,25 @@ export const getTimestamp = (createdAt: Date): string => {
   // Calculate the time difference in appropriate units
   if (diff < minute) {
     const seconds = Math.floor(diff / 1000);
-    return `${seconds} ${seconds === 1 ? "second" : "seconds"} ago`;
+    return `${seconds}s ago`;
   } else if (diff < hour) {
     const minutes = Math.floor(diff / minute);
-    return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
+    return `${minutes}m ago`;
   } else if (diff < day) {
     const hours = Math.floor(diff / hour);
-    return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+    return `${hours}h ago`;
   } else if (diff < week) {
     const days = Math.floor(diff / day);
-    return `${days} ${days === 1 ? "day" : "days"} ago`;
+    return `${days}d ago`;
   } else if (diff < month) {
     const weeks = Math.floor(diff / week);
-    return `${weeks} ${weeks === 1 ? "week" : "weeks"} ago`;
+    return `${weeks}w ago`;
   } else if (diff < year) {
     const months = Math.floor(diff / month);
-    return `${months} ${months === 1 ? "month" : "months"} ago`;
+    return `${months}mo ago`;
   } else {
     const years = Math.floor(diff / year);
-    return `${years} ${years === 1 ? "year" : "years"} ago`;
+    return `${years}y ago`;
   }
 };
 
