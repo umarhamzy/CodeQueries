@@ -12,7 +12,7 @@ interface Props {
   userId: string;
   totalAnswers: number;
   page?: number;
-  filter?: number;
+  filter?: string;
 }
 
 const AllAnswers = async ({
@@ -22,22 +22,22 @@ const AllAnswers = async ({
   page,
   filter,
 }: Props) => {
-  const result = await getAnswers({ questionId });
+  const result = await getAnswers({
+    questionId,
+    page: page,
+    sortBy: filter,
+  });
 
   return (
     <div className="mt-11">
       <div className="flex flex-wrap items-center justify-between max-md:space-y-2">
         <h3 className="primary-text-gradient">
           {totalAnswers === 0
-            ? ""
-            : `${
-                totalAnswers === 1
-                  ? `${totalAnswers} Answer`
-                  : `${totalAnswers} Answers`
-              }`}
+            ? "No answers"
+            : `${totalAnswers} ${totalAnswers === 1 ? "answer" : "answers"}`}
         </h3>
 
-        <Filter filters={AnswerFilters} otherClasses="min-w-[150px]" />
+        <Filter filters={AnswerFilters} otherClasses="min-w-[170px]" />
       </div>
 
       <div>

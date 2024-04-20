@@ -91,19 +91,31 @@ interface UrlQueryParams {
   value: string | null;
 }
 
+/**
+ * Forms a new URL query string by updating a specific key with a new value in the provided query string.
+ *
+ * @param {UrlQueryParams} params - The object containing the query string, the key to update, and the new value.
+ * @param {string} params.queryString - The existing query string.
+ * @param {string} params.key - The key to update in the query string.
+ * @param {string | null} params.value - The new value to assign to the key.
+ * @return {string} The new URL query string with the updated key.
+ */
 export const formUrlQuery = ({ queryString, key, value }: UrlQueryParams) => {
-  const currentUrl = qs.parse(queryString); // currentUrl is an object
-  // console.log(currentUrl);
+  // Parse the existing query string into an object
+  const currentUrl = qs.parse(queryString);
 
+  // Update the value of the specified key in the object
   currentUrl[key] = value;
 
+  // Stringify the following updated object back into a query string,
+  // skipping any keys with null values
   return qs.stringifyUrl(
     {
-      url: window.location.pathname,
-      query: currentUrl,
+      url: window.location.pathname, // The current URL path e.g: '/questions', '/tags', '/community'
+      query: currentUrl, // The updated query object
     },
     {
-      skipNull: true,
+      skipNull: true, // Flag to skip keys with null values
     },
   );
 };

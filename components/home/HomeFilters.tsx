@@ -4,7 +4,7 @@ import { HomePageFilters } from "@/constants/filters";
 import { Button } from "../ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import { formUrlQuery } from "@/lib/utils";
 
 const HomeFilter = () => {
   const searchParams = useSearchParams();
@@ -12,25 +12,38 @@ const HomeFilter = () => {
 
   const [active, setActive] = useState("");
 
+  /**
+   * Handles the click event on a filter button.
+   * If the currently active filter is the same as the clicked filter,
+   * it sets the active filter to an empty string and removes the "filter" query parameter from the URL.
+   * If a different filter is clicked, it updates the active filter and updates the "filter" query parameter in the URL.
+   *
+   * @param {string} filter - The value of the filter that was clicked.
+   */
   const handleTypeClick = (filter: string) => {
     if (active === filter) {
-      setActive("");
+      // If the active filter is the same as the clicked filter,
+      // we clear the active filter and remove the "filter" query parameter from the URL.
+      setActive(""); // Clear the active filter
       const newUrl = formUrlQuery({
-        queryString: searchParams.toString(),
-        key: "filter",
-        value: null,
+        queryString: searchParams.toString(), // Get the current query string
+        key: "filter", // The query parameter to update
+        value: null, // Set the value to null to remove it from the URL
       });
-      router.push(newUrl, { scroll: false });
+      router.push(newUrl, { scroll: false }); // Update the URL and scroll to the top of the page
     } else {
-      setActive(filter);
+      // If a different filter is clicked,
+      // we update the active filter and update the "filter" query parameter in the URL.
+      setActive(filter); // Update the active filter
       const newUrl = formUrlQuery({
-        queryString: searchParams.toString(),
-        key: "filter",
-        value: filter.toLowerCase(),
+        queryString: searchParams.toString(), // Get the current query string
+        key: "filter", // The query parameter to update
+        value: filter.toLowerCase(), // Update the value of the query parameter
       });
-      router.push(newUrl, { scroll: false });
+      router.push(newUrl, { scroll: false }); // Update the URL and scroll to the top of the page
     }
   };
+
   return (
     <div className="mt-10 hidden flex-wrap gap-3 md:flex">
       {HomePageFilters.map((filter) => (

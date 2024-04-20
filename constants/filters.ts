@@ -1,6 +1,6 @@
 export const AnswerFilters = [
-  { name: "Highest Upvotes", value: "highestUpvotes" },
-  { name: "Lowest Upvotes", value: "lowestUpvotes" },
+  { name: "Most Upvotes", value: "most_upvotes" },
+  { name: "Least Upvotes", value: "least_upvotes" },
   { name: "Most Recent", value: "recent" },
   { name: "Oldest", value: "old" },
 ];
