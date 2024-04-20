@@ -17,7 +17,6 @@ import {
 import { revalidatePath } from "next/cache";
 import { FilterQuery } from "mongoose";
 import Answer from "@/database/answer.model";
-import { BetweenVerticalEnd } from "lucide-react";
 
 export async function getUserById(params: GetUserByIdParams) {
   try {
@@ -100,7 +99,9 @@ export async function getAllUsers(params: GetAllUsersParams) {
   try {
     connectToDatabase();
 
-    const { searchQuery, filter } = params;
+    const { searchQuery, filter, page = 1, pageSize = 12 } = params;
+
+    const skipAmount = (page - 1) * pageSize;
 
     const query: FilterQuery<typeof User> = {};
 
@@ -127,9 +128,15 @@ export async function getAllUsers(params: GetAllUsersParams) {
         break;
     }
 
-    const users = await User.find(query).sort(sortOptions);
+    const totalUsers = await User.countDocuments(query);
+    const isNext = totalUsers > skipAmount + pageSize;
 
-    return { users };
+    const users = await User.find(query)
+      .sort(sortOptions)
+      .skip(skipAmount)
+      .limit(pageSize);
+
+    return { users, isNext };
   } catch (error) {
     console.log(error);
     throw error;
@@ -177,7 +184,9 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
   try {
     connectToDatabase();
 
-    const { clerkId, searchQuery, filter } = params;
+    const { clerkId, searchQuery, filter, page = 1, pageSize = 10 } = params;
+
+    const skipAmount = (page - 1) * pageSize;
 
     const query: FilterQuery<typeof Question> = searchQuery
       ? { title: { $regex: new RegExp(searchQuery) } }
@@ -210,6 +219,8 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
       match: query,
       options: {
         sort: sortOptions,
+        skip: skipAmount,
+        limit: pageSize,
         populate: [
           { path: "tags", model: Tag, select: "_id name" },
           {
@@ -223,9 +234,13 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
 
     if (!user) throw new Error("User not found!");
 
+    // Get total saved question by a user
+
     const savedQuestions = user.saved;
 
-    return { questions: savedQuestions };
+    const isNext = savedQuestions.length > pageSize;
+
+    return { questions: savedQuestions, isNext };
   } catch (error) {
     console.log(error);
     throw error;
@@ -266,12 +281,14 @@ export async function getUserQuestions(params: GetUserStatsParams) {
 
     const totalQuestions = await Question.countDocuments({ author: userId });
 
+    const skipAmount = (page - 1) * pageSize;
+
     const userQuestions = await Question.find({ author: userId })
       .sort({ views: -1, upvotes: -1 })
       .populate("tags", "_id name")
       .populate("author", "_id clerkId username picture")
-      .limit(pageSize)
-      .skip((page - 1) * pageSize);
+      .skip(skipAmount)
+      .limit(pageSize);
 
     return { questions: userQuestions, totalQuestions };
   } catch (error) {

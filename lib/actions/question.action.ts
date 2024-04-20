@@ -21,7 +21,10 @@ export async function getQuestions(params: GetQuestionsParams) {
   try {
     connectToDatabase();
 
-    const { searchQuery, filter } = params;
+    const { searchQuery, filter, page = 1, pageSize = 20 } = params;
+
+    // Calculate the number of posts to skip based on the page number and page size
+    const skipAmount = (page - 1) * pageSize;
 
     const query: FilterQuery<typeof Question> = {};
 
@@ -54,9 +57,15 @@ export async function getQuestions(params: GetQuestionsParams) {
     const questions = await Question.find(query)
       .populate({ path: "tags", model: Tag })
       .populate({ path: "author", model: User })
+      .skip(skipAmount)
+      .limit(pageSize)
       .sort(sortOptions);
 
-    return { questions };
+    const totalQuestions = await Question.countDocuments(query);
+
+    const isNext = totalQuestions > skipAmount + questions.length;
+
+    return { questions, isNext };
   } catch (error) {
     console.log(error);
     throw error;
@@ -119,6 +128,44 @@ export async function createQuestion(params: CreateQuestionParams) {
     // Create an interaction record for the user's ask_question action
 
     // Increment author's reputation by +5 for creating a question
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function editQuestion(params: EditQuestionParams) {
+  try {
+    connectToDatabase();
+
+    const { questionId, title, description, path } = params;
+
+    const question = await Question.findById(questionId).populate("tags");
+
+    if (!question) throw new Error("Question not found");
+
+    question.title = title;
+    question.description = description;
+
+    await question.save();
+
+    revalidatePath(path);
+  } catch (error) {}
+}
+
+export async function deleteQuestion(params: DeleteQuestionParams) {
+  try {
+    connectToDatabase();
+    const { questionId, path } = params;
+
+    await Question.deleteOne({ _id: questionId });
+    await Answer.deleteMany({ question: questionId });
+    await Interaction.deleteMany({ question: questionId });
+    await Tag.updateMany(
+      { questions: questionId },
+      { pull: { questions: questionId } },
+    );
 
     revalidatePath(path);
   } catch (error) {
@@ -194,42 +241,4 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
     console.log(error);
     throw error;
   }
-}
-
-export async function deleteQuestion(params: DeleteQuestionParams) {
-  try {
-    connectToDatabase();
-    const { questionId, path } = params;
-
-    await Question.deleteOne({ _id: questionId });
-    await Answer.deleteMany({ question: questionId });
-    await Interaction.deleteMany({ question: questionId });
-    await Tag.updateMany(
-      { questions: questionId },
-      { pull: { questions: questionId } },
-    );
-
-    revalidatePath(path);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function editQuestion(params: EditQuestionParams) {
-  try {
-    connectToDatabase();
-
-    const { questionId, title, description, path } = params;
-
-    const question = await Question.findById(questionId).populate("tags");
-
-    if (!question) throw new Error("Question not found");
-
-    question.title = title;
-    question.description = description;
-
-    await question.save();
-
-    revalidatePath(path);
-  } catch (error) {}
 }

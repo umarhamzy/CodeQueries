@@ -39,7 +39,7 @@ export async function getAllTags(params: GetAllTagsParams) {
   try {
     connectToDatabase();
 
-    const { searchQuery, filter } = params;
+    const { searchQuery, filter, page = 1, pageSize = 9 } = params;
 
     const query: FilterQuery<typeof Tag> = {};
 
@@ -62,14 +62,22 @@ export async function getAllTags(params: GetAllTagsParams) {
       case "old":
         sortOptions = { createdAt: 1 };
         break;
-        break;
       default:
         break;
     }
 
-    const tags = await Tag.find(query).sort(sortOptions);
+    const skipAmount = (page - 1) * pageSize;
 
-    return { tags };
+    const tags = await Tag.find(query)
+      .sort(sortOptions)
+      .skip(skipAmount)
+      .limit(pageSize);
+
+    const totalTags = await Tag.countDocuments(query);
+
+    const isNext = totalTags > skipAmount + tags.length;
+
+    return { tags, isNext };
   } catch (error) {
     console.log(error);
     throw error;
