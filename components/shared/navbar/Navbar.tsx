@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SignedIn, UserButton } from "@clerk/nextjs";
-import Theme from "./Theme";
+import ThemeSwitch from "./ThemeSwitch";
 import MobileNav from "./MobileNav";
 import GlobalSearch from "../search/GlobalSearch";
 
@@ -22,12 +22,12 @@ const Navbar = () => {
           className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900
           max-sm:hidden"
         >
-          Dev&nbsp;<span className="text-primary-500">Overflow</span>
+          Code<span className="text-primary-500">Queries</span>
         </p>
       </Link>
       <GlobalSearch />
       <div className="flex-between gap-5">
-        <Theme />
+        <ThemeSwitch />
         <SignedIn>
           <UserButton
             afterSignOutUrl="/"

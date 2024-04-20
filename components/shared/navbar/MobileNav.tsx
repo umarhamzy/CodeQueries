@@ -67,18 +67,18 @@ const MobileNav = () => {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="background-light900_dark200 max-w-sm max-[325px]:min-w-full"
+        className="background-light900_dark200 light-border max-w-sm max-[325px]:min-w-full"
       >
         <Link href="/" className="flex items-center gap-1">
           <Image
             src="/assets/images/site-logo.svg"
             width={23}
             height={23}
-            alt="Dev Overflow logo"
+            alt="CQ logo"
           />
 
           <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            Dev <span className="text-primary-500">Overflow</span>
+            Code<span className="text-primary-500">Queries</span>
           </p>
         </Link>
         <div className="no-scrollbar flex h-[calc(100vh-80px)] flex-col justify-between overflow-y-auto">

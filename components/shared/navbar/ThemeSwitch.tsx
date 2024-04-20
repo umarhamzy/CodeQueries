@@ -11,7 +11,7 @@ import {
 import { Image } from "next/dist/client/image-component";
 import { themes } from "@/constants";
 
-const Theme = () => {
+const ThemeSwitch = () => {
   const { mode, setMode } = useTheme();
   return (
     <Menubar className="relative border-none bg-transparent shadow-none">
@@ -74,4 +74,4 @@ const Theme = () => {
   );
 };
 
-export default Theme;
+export default ThemeSwitch;
