@@ -2,7 +2,6 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import qs from "query-string";
 
-import QueryString from "qs";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
