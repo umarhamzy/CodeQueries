@@ -6,7 +6,7 @@ export interface IInteraction extends Document {
   action: string;
   question: Schema.Types.ObjectId; // reference to question
   answer: Schema.Types.ObjectId; //reference to answer
-  tags: Schema.Types.ObjectId; // reference to tag
+  tags: Schema.Types.ObjectId[]; // reference to tag
   createdAt: Date;
 }
 
@@ -16,7 +16,7 @@ const InteractionSchema = new Schema({
   action: { type: String, required: true },
   question: { type: Schema.Types.ObjectId, ref: "Question" },
   answer: { type: Schema.Types.ObjectId, ref: "Answer" },
-  tags: { type: Schema.Types.ObjectId, ref: "Tag" },
+  tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
   createdAt: { type: Date, default: Date.now },
 });
 
