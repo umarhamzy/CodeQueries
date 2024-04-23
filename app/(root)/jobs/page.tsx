@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Find Jobs | CodeQueries",
+};
+
 const page = () => {
   return (
     <div>

@@ -20,7 +20,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "CodeQueries",
   description:
-    "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developer from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
+    "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developer from around the world.",
   icons: {
     icon: "/assets/images/site-logo.svg",
   },
