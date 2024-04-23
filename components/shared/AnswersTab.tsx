@@ -5,7 +5,7 @@ import AnswerCard from "../cards/AnswerCard";
 
 interface Props extends SearchParamsProps {
   userId: string;
-  clerkId?: string;
+  clerkId?: string | null;
 }
 
 const AnswersTab = async ({ searchParams, userId, clerkId }: Props) => {

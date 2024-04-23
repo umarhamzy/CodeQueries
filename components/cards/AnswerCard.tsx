@@ -6,7 +6,7 @@ import EditDeleteAction from "../shared/EditDeleteAction";
 
 interface AnswerProps {
   _id: string;
-  clerkId?: string;
+  clerkId?: string | null;
   question: {
     _id: string;
     title: string;
