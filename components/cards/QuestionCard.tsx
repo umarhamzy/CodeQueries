@@ -75,27 +75,30 @@ const QuestionCard = async ({
           isAuthor
           textStyles="small-medium text-dark400_light700"
         />
-        <Metric
-          imgUrl="/assets/icons/like.svg"
-          alt="upvotes"
-          value={formatBigNumber(upvotes.length)}
-          title={`${upvotes.length === 1 ? " upvote" : " upvotes"}`}
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Metric
-          imgUrl="/assets/icons/message.svg"
-          alt="message"
-          value={formatBigNumber(answers.length)}
-          title={`${answers.length === 1 ? " answer" : " answers"}`}
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Metric
-          imgUrl="/assets/icons/eye.svg"
-          alt="eye"
-          value={formatBigNumber(views)}
-          title={`${views > 1 ? " views" : " view"}`}
-          textStyles="small-medium text-dark400_light800"
-        />
+
+        <div className="flex items-center gap-4 max-sm:flex-wrap max-sm:justify-start">
+          <Metric
+            imgUrl="/assets/icons/like.svg"
+            alt="upvotes"
+            value={formatBigNumber(upvotes.length)}
+            title={`${upvotes.length === 1 ? " upvote" : " upvotes"}`}
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Metric
+            imgUrl="/assets/icons/message.svg"
+            alt="message"
+            value={formatBigNumber(answers.length)}
+            title={`${answers.length === 1 ? " answer" : " answers"}`}
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Metric
+            imgUrl="/assets/icons/eye.svg"
+            alt="eye"
+            value={formatBigNumber(views)}
+            title={`${views > 1 ? " views" : " view"}`}
+            textStyles="small-medium text-dark400_light800"
+          />
+        </div>
       </div>
     </div>
   );

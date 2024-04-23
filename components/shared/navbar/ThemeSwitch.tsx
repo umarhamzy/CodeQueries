@@ -40,7 +40,7 @@ const ThemeSwitch = () => {
           {themes.map((item) => (
             <MenubarItem
               key={item.value}
-              className="gap-4 px-2.5 py-2 focus:bg-slate-100 dark:focus:bg-dark-400"
+              className="cursor-pointer gap-4 px-2.5 py-2 focus:bg-slate-100 dark:focus:bg-dark-400"
               onClick={() => {
                 setMode(item.value);
 
