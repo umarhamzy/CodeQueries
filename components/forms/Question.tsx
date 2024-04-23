@@ -22,6 +22,7 @@ import Image from "next/image";
 import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   mongoUserId: string;
@@ -67,6 +68,10 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
           path: pathname,
         });
 
+        toast({
+          description: "Your question has been updated!",
+        });
+
         // direct to edited question
         router.push(`/question/${parsedQuestionDetails._id}`);
       } else {
@@ -76,6 +81,10 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
           tags: values.tags,
           author: JSON.parse(mongoUserId),
           path: pathname,
+        });
+
+        toast({
+          description: "Your question is now live!",
         });
 
         // navigate to home page

@@ -18,6 +18,7 @@ import { useState } from "react";
 import { ProfileSchema } from "@/lib/validations";
 import { usePathname, useRouter } from "next/navigation";
 import { updateUser } from "@/lib/actions/user.action";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   clerkId: string;
@@ -40,7 +41,7 @@ const Profile = ({ clerkId, user }: Props) => {
     defaultValues: {
       name: parsedUser.name || "",
       username: parsedUser.username || "",
-      portfolioWebsite: parsedUser.portfolioWebsite || "",
+      portfolioWebsite: parsedUser.portfolioWebsite,
       location: parsedUser.location || "",
       bio: parsedUser.bio || "",
     },
@@ -50,7 +51,7 @@ const Profile = ({ clerkId, user }: Props) => {
     setIsSubmitting(true);
 
     try {
-      const response = await updateUser({
+      await updateUser({
         clerkId,
         updateData: {
           name: values.name,
@@ -63,6 +64,10 @@ const Profile = ({ clerkId, user }: Props) => {
       });
 
       router.back();
+
+      toast({
+        description: "Your profile has been updated!",
+      });
     } catch (error) {
       console.log(error);
     } finally {

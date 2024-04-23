@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/menubar";
 import { Image } from "next/dist/client/image-component";
 import { themes } from "@/constants";
+import { toast } from "@/components/ui/use-toast";
 
 const ThemeSwitch = () => {
   const { mode, setMode } = useTheme();
@@ -48,6 +49,10 @@ const ThemeSwitch = () => {
                 } else {
                   localStorage.removeItem("theme");
                 }
+
+                toast({
+                  description: `Theme Changed to ${item.label}`,
+                });
               }}
             >
               <Image

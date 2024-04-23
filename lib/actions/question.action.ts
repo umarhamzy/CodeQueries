@@ -16,13 +16,12 @@ import { revalidatePath } from "next/cache";
 import Answer from "@/database/answer.model";
 import Interaction from "@/database/interaction.model";
 import { FilterQuery } from "mongoose";
-import path from "path";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
     connectToDatabase();
 
-    const { searchQuery, filter, page = 1, pageSize = 20 } = params;
+    const { searchQuery, filter, page = 1, pageSize = 10 } = params;
 
     // Calculate the number of posts to skip based on the page number and page size
     const skipAmount = (page - 1) * pageSize;
