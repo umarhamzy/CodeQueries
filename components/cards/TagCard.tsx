@@ -24,9 +24,7 @@ const TagCard = ({ tag }: Props) => {
           <span className="body-semibold primary-text-gradient">
             {tag.questions.length}
           </span>
-          <div>
-            {tag.questions.length > 1 ? <p>questions</p> : <p>question</p>}
-          </div>
+          {tag.questions.length > 1 ? "questions" : "question"}
         </p>
       </article>
     </Link>

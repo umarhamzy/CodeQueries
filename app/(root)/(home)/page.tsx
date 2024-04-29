@@ -48,8 +48,6 @@ export default async function Home({ searchParams }: SearchParamsProps) {
   // console.log(result.questions);
   // console.log(searchParams);
 
-  // TODO Fetch recommended questions
-
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -73,7 +71,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           filters={HomePageFilters}
           otherClasses="min-h-[56px] min-w-[170px]"
           containerClasses="hidden max-md:flex"
-          placeholder="Filter Questions"
+          placeholder="Sort by.."
         />
       </div>
       <HomeFilter />

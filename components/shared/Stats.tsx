@@ -11,7 +11,7 @@ interface StatsCardProps {
 const StatsCard = ({ imgUrl, value, title }: StatsCardProps) => {
   return (
     <div className="light-border-2 background-light900_dark300 flex items-center justify-start gap-4 rounded-md border p-6 shadow-light-300 dark:shadow-dark-200 max-md:flex-wrap">
-      <Image src={imgUrl} alt={title} width={40} height={50} />
+      <Image src={imgUrl} alt={title} width={40} height={40} />
       <div>
         <p className="paragraph-semibold text-dark200_light900">{value}</p>
         <p className="body-medium text-dark400_light700">{title}</p>

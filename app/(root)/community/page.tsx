@@ -32,7 +32,7 @@ const page = async ({ searchParams }: SearchParamsProps) => {
         />
         <Filter
           filters={UserFilters}
-          placeholder="Filter Users"
+          placeholder="Sort by.."
           otherClasses="min-h-[56px] min-w-[170px]"
         />
       </div>

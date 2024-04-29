@@ -51,7 +51,7 @@ const ThemeSwitch = () => {
                 }
 
                 toast({
-                  description: `Theme Changed to ${item.label}`,
+                  description: `Theme changed to ${item.label}`,
                 });
               }}
             >

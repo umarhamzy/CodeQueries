@@ -41,7 +41,7 @@ const page = async ({ searchParams }: SearchParamsProps) => {
         <Filter
           filters={QuestionFilters}
           otherClasses="min-h-[56px] min-w-[170px]"
-          placeholder="Filter Questions"
+          placeholder="Sort by.."
         />
       </div>
       <div className="mt-10 flex w-full flex-col gap-6">

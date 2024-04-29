@@ -33,12 +33,12 @@ const page = async ({ searchParams }: SearchParamsProps) => {
         />
         <Filter
           filters={TagFilters}
-          placeholder="Filter Tags"
+          placeholder="Sort by.."
           otherClasses="min-h-[56px] min-w-[170px]"
         />
       </div>
 
-      <section className="mt-12 grid grid-cols-3 gap-4 max-sm:grid-cols-2">
+      <section className="mt-12 grid grid-cols-3 gap-4 max-md:grid-cols-2">
         {result.tags.length > 0 ? (
           result.tags.map((tag) => <TagCard key={tag._id} tag={tag} />)
         ) : (

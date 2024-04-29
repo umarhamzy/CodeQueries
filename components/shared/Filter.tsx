@@ -54,7 +54,7 @@ export default function Filter({
         >
           <SelectValue
             placeholder={`${
-              placeholder !== undefined || null ? `${placeholder}` : "Filter By"
+              placeholder !== undefined || null ? `${placeholder}` : "Sort by.."
             }`}
           />
         </SelectTrigger>

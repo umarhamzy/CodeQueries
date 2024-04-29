@@ -20,12 +20,18 @@ import { createAnswer } from "@/lib/actions/answer.action";
 import { usePathname } from "next/navigation";
 
 interface Props {
-  question: string;
+  questionTitle: string;
+  questionDescription: string;
   questionId: string;
   authorId: string;
 }
 
-const Answer = ({ question, questionId, authorId }: Props) => {
+const Answer = ({
+  questionTitle,
+  questionDescription,
+  questionId,
+  authorId,
+}: Props) => {
   const pathname = usePathname();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,7 +82,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`,
         {
           method: "POST",
-          body: JSON.stringify({ question }),
+          body: JSON.stringify({ questionTitle, questionDescription }),
         },
       );
 

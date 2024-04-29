@@ -78,7 +78,7 @@ const Votes = ({
         });
       }
       return toast({
-        title: `Upvote ${!hasUpvoted ? "Successful" : "Removed"}`,
+        title: `Upvote ${!hasUpvoted ? "successful" : "removed"}`,
         variant: !hasUpvoted ? "default" : "destructive",
       });
     }
@@ -102,7 +102,7 @@ const Votes = ({
         });
       }
       return toast({
-        title: `Downvote ${!hasDownvoted ? "Successful" : "Removed"}`,
+        title: `Downvote ${!hasDownvoted ? "successful" : "removed"}`,
         variant: !hasDownvoted ? "default" : "destructive",
       });
     }
