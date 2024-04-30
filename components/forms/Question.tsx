@@ -72,7 +72,7 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
           description: "Your question has been updated!",
         });
 
-        // direct to edited question
+        // re-direct to edited question
         router.push(`/question/${parsedQuestionDetails._id}`);
       } else {
         await createQuestion({

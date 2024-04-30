@@ -17,10 +17,6 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
 
   const handleEdit = () => {
     router.push(`/question/edit/${JSON.parse(itemId)}`);
-
-    toast({
-      description: "Your question has been updated!",
-    });
   };
   const handleDelete = async () => {
     if (type === "question") {
