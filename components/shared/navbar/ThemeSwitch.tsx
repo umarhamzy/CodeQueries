@@ -50,8 +50,16 @@ const ThemeSwitch = () => {
                   localStorage.removeItem("theme");
                 }
 
+                let icon;
+
+                if (item.icon === "/assets/icons/sun.svg") {
+                  icon = "☀️";
+                } else {
+                  icon = "🌑";
+                }
+
                 toast({
-                  description: `Theme changed to ${item.label}`,
+                  description: `Switched to ${icon}`,
                 });
               }}
             >
