@@ -25,12 +25,12 @@ import { useTheme } from "@/context/ThemeProvider";
 import { toast } from "../ui/use-toast";
 
 interface Props {
-  mongoUserId: string;
+  mongoUser: string;
   type?: string;
   questionDetails?: string;
 }
 
-const Question = ({ mongoUserId, type, questionDetails }: Props) => {
+const Question = ({ mongoUser, type, questionDetails }: Props) => {
   const { mode } = useTheme();
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -79,7 +79,7 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
           title: values.title,
           description: values.description,
           tags: values.tags,
-          author: JSON.parse(mongoUserId),
+          author: JSON.parse(mongoUser),
           path: pathname,
         });
 
