@@ -18,7 +18,7 @@ const page = async ({ params }: ParamsProps) => {
       <h1 className="h1-bold text-dark100_light900">Edit Question</h1>
       <div className="mt-9">
         <Question
-          mongoUserId={JSON.stringify(mongoUser._id)}
+          mongoUser={JSON.stringify(mongoUser._id)}
           type="edit"
           questionDetails={JSON.stringify(result)}
         />
